@@ -37,6 +37,7 @@ public class AggregateFunction {
 
 	// Write logic for constructor
 	public AggregateFunction(String field, String function) {
+		super();
 		this.field = field;
 		this.function =function;
 	}

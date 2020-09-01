@@ -48,6 +48,7 @@ public class Restriction {
 
 	// Write logic for constructor
 	public Restriction(String name, String value, String condition) {
+		super();
 		this.name =name;
 		this.value = value;
 		this.condition = condition;
