@@ -92,4 +92,24 @@ public class QueryParameter {
 	{
 		return getGroupByFields();
 	}
+
+	public void setBaseQuery(String baseQuery) {
+		this.baseQuery = baseQuery;
+	}
+
+	public String getQueryString() {
+		return queryString;
+	}
+
+	public void setQueryString(String queryString) {
+		this.queryString = queryString;
+	}
+
+	public String getQueryType() {
+		return queryType;
+	}
+
+	public void setQueryType(String queryType) {
+		this.queryType = queryType;
+	}
 }
