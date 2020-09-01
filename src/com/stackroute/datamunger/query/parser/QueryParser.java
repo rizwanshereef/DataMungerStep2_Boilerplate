@@ -30,6 +30,9 @@ public class QueryParser {
 	 * QueryParameter class
 	 */
 	public QueryParameter parseQuery(String queryString) {
+//		queryParameter.setFileName(queryString);
+//		queryParameter.setQueryBaseQuery(queryString);
+//		queryParameter.setAggregateFunctions();
 
 		return queryParameter;
 	}
@@ -39,6 +42,10 @@ public class QueryParser {
 	 * "from" clause.
 	 */
 
+	public String getFileName(String queryString) {
+		String arr = queryString.substring(queryString.indexOf("from") + 5, queryString.indexOf("csv") + 3);
+		return arr;
+	}
 	/*
 	 * 
 	 * Extract the baseQuery from the query.This method is used to extract the
@@ -46,6 +53,16 @@ public class QueryParser {
 	 * query till the where clause
 	 */
 
+
+	public String getBaseQuery(String queryString) {
+		if (!queryString.contains("*")) {
+			String queryStringNew = queryString.substring(0, queryString.indexOf("csv") + 3);
+			return queryStringNew;
+		} else {
+			return queryString;
+		}
+
+	}
 	/*
 	 * extract the order by fields from the query string. Please note that we will
 	 * need to extract the field(s) after "order by" clause in the query, if at all
@@ -53,6 +70,14 @@ public class QueryParser {
 	 * data/ipl.csv order by city from the query mentioned above, we need to extract
 	 * "city". Please note that we can have more than one order by fields.
 	 */
+	public String[] getOrderByFields(String queryString) {
+		if (queryString.contains("order by")) {
+			String queryStringNew = queryString.substring(queryString.indexOf("order by") + 9, queryString.length());
+			String queryStringNewOne[] = queryStringNew.split(" ");
+			return queryStringNewOne;
+		} else
+			return null;
+	}
 
 	/*
 	 * Extract the group by fields from the query string. Please note that we will
@@ -61,6 +86,14 @@ public class QueryParser {
 	 * data/ipl.csv group by city from the query mentioned above, we need to extract
 	 * "city". Please note that we can have more than one group by fields.
 	 */
+	public String[] getGroupByFields(String queryString) {
+		if (queryString.contains("group by")) {
+			String queryStringNew = queryString.substring(queryString.indexOf("group by") + 9, queryString.length());
+			String queryStringNewOne[] = queryStringNew.split(" ");
+			return queryStringNewOne;
+		} else
+			return null;
+	}
 
 	/*
 	 * Extract the selected fields from the query string. Please note that we will
@@ -70,6 +103,7 @@ public class QueryParser {
 	 * note that we might have a field containing name "from_date" or "from_hrs".
 	 * Hence, consider this while parsing.
 	 */
+
 
 	/*
 	 * Extract the conditions from the query string(if exists). for each condition,
